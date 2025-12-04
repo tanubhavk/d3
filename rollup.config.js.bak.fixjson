@@ -2,9 +2,7 @@ import {readFileSync} from "fs";
 import json from "@rollup/plugin-json";
 import nodeResolve from "@rollup/plugin-node-resolve";
 import terser from "@rollup/plugin-terser";
-// tooling-only: read package.json via fs to avoid JSON import assertion syntax issues
-import fs from "fs";
-const meta = JSON.parse(fs.readFileSync(new URL("./package.json", import.meta.url), "utf8"));
+import meta from "./package.json" assert {type: "json"};
 
 // Extract copyrights from the LICENSE.
 const copyright = readFileSync("./LICENSE", "utf-8")
